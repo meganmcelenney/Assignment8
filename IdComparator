@@ -1,0 +1,21 @@
+// Assignment #: Arizona State University CSE205 #8
+//         Name: Megan McElenney
+//    StudentID: 1214828277
+//      Lecture: T Th 4:30
+//  Description: The class compare the IDs of two foods
+
+import java.util.Comparator;
+
+public class IdComparator implements Comparator<Food>
+{
+	public int compare(Food one, Food two)
+	{
+		if(one.getId() < two.getId())
+			return -2;
+		else if(one.getId() > two.getId())
+			return 2;
+		else
+			return 0;
+	}
+
+}
