@@ -1,0 +1,111 @@
+// Assignment #: Arizona State University CSE205 #8
+//         Name: Megan McElenney
+//    StudentID: 1214828277
+//      Lecture: T Th 4:30
+//  Description: The class performs many of the actions called upon in Assignment8. 
+//  It creates a grocery store that can add and remove Foods, sorts the foodList, and print the list.
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class GroceryStore implements Serializable
+{
+	ArrayList<Food> foodList;
+	
+	public GroceryStore()
+	{
+		foodList = new ArrayList<Food>();
+	}
+	
+	int idExists(int foodId)
+	{
+		for(int i = 0; i < foodList.size(); i++)
+		{
+			if(foodList.get(i).getId() == foodId)
+				return i;
+		}
+		return -1;
+	}
+	
+	int categAndNameExists(String nCategory, String nName)
+	{
+		for(int j = 0; j < foodList.size(); j++)
+		{
+			if(foodList.get(j).getCategory().equalsIgnoreCase(nCategory) && foodList.get(j).getName().equals(nName))
+				return j;
+		}
+		return -1;
+	}
+	
+	boolean addFoodById(String category, String name, int id)
+	{
+		for(int k = 0; k < foodList.size(); k++)
+		{
+			if( id == foodList.get(k).getId())
+				return false;
+		}
+		Food newF = new Food(category, name, id);
+		foodList.add(newF);
+		return true;
+	}
+	
+	boolean removeById(int id)
+	{
+		for(int x = 0; x < foodList.size(); x++)
+		{
+			if(id == foodList.get(x).getId())
+			{
+				foodList.remove(x);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	boolean removeByCategAndName(String category, String name)
+	{
+		for(int x = 0; x < foodList.size(); x++)
+		{
+			if(category.equalsIgnoreCase(foodList.get(x).getCategory()) && name.equalsIgnoreCase(foodList.get(x).getName()))
+			{
+				foodList.remove(x);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	void sortByCategAndName( )
+	{
+		CategAndNameComparator ccn = new CategAndNameComparator();
+		Sorts.sort(foodList,ccn);
+	}
+	
+	void sortById( )	
+	{
+		IdComparator cid = new IdComparator();
+		Sorts.sort(foodList,cid);
+	}
+	
+	String listFood( )
+	{
+		String words = "";
+		if(foodList.size() == 0)
+			return "\nno food\n\n";
+		else
+		{
+			for(int t = 0; t < foodList.size(); t++)
+			{
+				words += foodList.get(t).toString();
+			}
+		}
+		return words;
+	}
+	
+	void closeGroceryStore()
+	{
+		foodList.clear();
+	}
+
+
+}
