@@ -1,0 +1,31 @@
+// Assignment #: Arizona State University CSE205 #8
+//         Name: Megan McElenney
+//    StudentID: 1214828277
+//      Lecture: T Th 4:30
+//  Description: The class sorts and ArrayList using a comparator method and selection sort
+
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class Sorts 
+{
+	public static void sort(ArrayList<Food> foodList, Comparator<Food> xComparator)
+	{
+	      Food temp;
+	      int min;
+
+	      for(int index = 0; index < foodList.size()-1; index++)
+	      {
+	         min = index;
+	         for(int scan = index + 1; scan < foodList.size(); scan++)
+	         {
+	        	 if (xComparator.compare(foodList.get(scan), foodList.get(min)) < 0)
+		               min = scan;
+	         }
+	         // Swap the values
+	         temp = foodList.get(min);
+	         foodList.set(min, foodList.get(index));
+	         foodList.set(index, temp);
+	      }
+	}
+}
