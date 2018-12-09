@@ -1,0 +1,30 @@
+// Assignment #: Arizona State University CSE205 #8
+//         Name: Megan McElenney
+//    StudentID: 1214828277
+//      Lecture: T Th 4:30
+//  Description: The class compares the category and name of two foods
+
+import java.util.Comparator;
+
+public class CategAndNameComparator implements Comparator<Food>
+{
+
+	public int compare(Food one, Food two)
+	{
+		if(one.getCategory().compareTo(two.getCategory()) < 0)
+			return -1;
+		else if(one.getCategory().compareTo(two.getCategory()) > 0)
+			return 1;
+		else if(one.getCategory().compareTo(two.getCategory()) == 0)
+		{
+			if(one.getName().compareTo(two.getName()) < 0)
+				return -1;
+			if(one.getName().compareTo(two.getName()) > 0) 
+				return 1;
+			else
+				return 0;
+		}
+		return -1;
+	}
+
+}
